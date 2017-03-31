@@ -1,6 +1,5 @@
-// prova is a wrapper for tape
 // use npm run test:browser to run tests in a browser
-var test = require('prova');
+var test = require('tape');
 
 var RSS = require('..');
 var xml2js = require('xml2js');
@@ -336,4 +335,25 @@ test('custom namespaces', function(t) {
     });
 
     t.equal(feed.xml({indent: true}), expectedOutput.customNamespaces);
+});
+
+test('content:encoded element', function(t) {
+    t.plan(1);
+
+    var feed = new RSS({
+        title: 'title',
+        description: 'description',
+        feed_url: 'http://example.com/rss.xml',
+        site_url: 'http://example.com',
+        hub: 'http://example.com/hub'
+    });
+
+    feed.item({
+        title: 'item 1',
+        url: 'http://example.com/article1',
+        date: 'May 24, 2012 04:00:00 GMT',
+        content: '<p>Some <b>HTML</b> content</p>'
+    });
+
+    t.equal(feed.xml({indent: true}), expectedOutput.contentEncoded);
 });

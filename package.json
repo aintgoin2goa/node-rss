@@ -69,7 +69,6 @@
     "include-folder": "^1.0.0",
     "load-grunt-tasks": "^3.3.0",
     "mockdate": "^1.0.3",
-    "prova": "^2.1.2",
     "q": "^1.4.1",
     "tap-difflet": "^0.4.0",
     "tape": "^4.2.1",
